@@ -1,5 +1,4 @@
-#添加helloworld
-echo 'src-git luci-app-ssr-plus https://github.com/fw876/helloworld.git' >> feeds.conf.default
+
 #添加easymesh
 echo 'src-git luci-app-easymesh https://github.com/shuishihan/easymesh.git' >> feeds.conf.default
 #添加luci-app-adguardhome
