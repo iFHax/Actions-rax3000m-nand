@@ -97,7 +97,8 @@ jobs:
         mixkey: 'openwrt23-cortexa53'
         prefix: ${{ github.workspace }}/openwrt
 
-    - name: 复用TOOLCHAIN，代码来自https://github.com/haiibo/OpenWrt/blob/main/.github/workflows/ARMv8-Mini-OpenWrt.yml
+    #Toolchain编译工具链会消耗一个多小时。Toolchain是可以复用的。代码来自https://github.com/haiibo/OpenWrt/blob/main/.github/workflows/ARMv8-Mini-OpenWrt.yml
+    - name: 复用TOOLCHAIN
       if: env.CACHE_TOOLCHAIN == 'true'
       uses: HiGarfield/cachewrtbuild@main
       with:
