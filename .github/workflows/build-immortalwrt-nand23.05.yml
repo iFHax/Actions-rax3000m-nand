@@ -1,3 +1,4 @@
+
 #
 # Copyright (c) 2019-2020 P3TERX <https://p3terx.com>
 #
@@ -100,6 +101,7 @@ jobs:
     - name: 生成复用TOOLCHAIN参数
       id: variable
       run: |
+        echo "OPENWRT_PATH=$PWD" >> $GITHUB_ENV
         cp $CONFIG_FILE $OPENWRT_PATH/.config
         cd $OPENWRT_PATH
         make defconfig > /dev/null 2>&1
