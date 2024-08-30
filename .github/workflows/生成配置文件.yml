@@ -203,8 +203,8 @@ jobs:
       id: tag
       if: env.UPLOAD_RELEASE == 'true' && steps.compile.outputs.status == 'success' && !cancelled()
       run: |
-        echo -e "配置中至少要选择一个型号" >> release.txt
-        echo -e "全量配置选项" >> release.txt
+        echo -e "配置中至少要选择二级型号" >> release.txt
+        echo -e "immortalwrt/target/ 里找型号" >> release.txt
         #eeprom_status=""
         #if [ -e openwrt/target/linux/mediatek/filogic/base-files/lib/firmware/mediatek/nx30pro_eeprom.bin ] ; then
         #  echo "- eeprom 使用 H3C NX30 Pro 提取版本" >> release.txt
