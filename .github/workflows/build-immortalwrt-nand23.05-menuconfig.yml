@@ -154,13 +154,14 @@ jobs:
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
 
-    #- name: 编译固件中
-    #  id: compile
-    #  run: |
-    #    cd openwrt
-    #    echo -e "$(($(nproc)+1)) thread compile"
-    #    make -j$(($(nproc)+1)) || make -j$(nproc) || make -j1 V=s
-    #    echo "status=success" >> $GITHUB_OUTPUT
+    - name: 编译固件中
+      id: compile
+      run: |
+        echo "status=success" >> $GITHUB_OUTPUT
+     #   cd openwrt
+     #   echo -e "$(($(nproc)+1)) thread compile"
+     #   make -j$(($(nproc)+1)) || make -j$(nproc) || make -j1 V=s
+     #   echo "status=success" >> $GITHUB_OUTPUT
 
     - name: 空间使用情况
       if: (!cancelled())
@@ -173,11 +174,12 @@ jobs:
         name: OpenWrt_bin${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
         path: openwrt/bin
 
+    #生成的配置文件可能在openwrt/trunk/.config，https://openwrt.org/zh-cn/doc/howto/build
     - name: 整理文件
       id: organize
       if: steps.compile.outputs.status == 'success'
       run: |
-        cd openwrt/.config
+        cd openwrt/trunk/.config
         rm -rf *.buildinfo 
         rm -rf *.json 
         rm -rf *.manifest 
