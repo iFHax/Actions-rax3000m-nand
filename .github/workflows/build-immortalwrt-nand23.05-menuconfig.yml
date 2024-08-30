@@ -92,9 +92,9 @@ jobs:
         gcc-multilib g++-multilib gettext git libncurses-dev libssl-dev \
         python3-distutils python3-setuptools rsync swig unzip zlib1g-dev file wget
 
-    - name: 检查空间使用情况
-      if: (!cancelled())
-      run: df -hT
+    #- name: 检查空间使用情况
+    #  if: (!cancelled())
+    #  run: df -hT
 
     - name: 克隆源码
       working-directory: /workdir
@@ -112,43 +112,43 @@ jobs:
 
 
     
-    - name: 更新 & 安装 feeds & 执行脚本
-      run: |
-        cd /workdir/openwrt
-        git clone  https://github.com/shuishihan/luci-app-easymesh.git package/feeds/luci/luci-app-easymesh
-        git clone --depth 1  https://github.com/rufengsuixing/luci-app-adguardhome.git package/feeds/luci/luci-app-adguardhome
-        echo >> feeds.conf.default
-        echo 'src-git istore https://github.com/linkease/istore;main' >> feeds.conf.default
-        echo 'src-git helloworld https://github.com/fw876/helloworld.git' >> feeds.conf.default
-        ./scripts/feeds update istore
-        ./scripts/feeds install -d y -p istore luci-app-store     
-        ./scripts/feeds update -a && ./scripts/feeds install -a
-        chmod +x $GITHUB_WORKSPACE/$DIY_SH && $GITHUB_WORKSPACE/$DIY_SH
+    #- name: 更新 & 安装 feeds & 执行脚本
+    #  run: |
+    #    cd /workdir/openwrt
+        #git clone  https://github.com/shuishihan/luci-app-easymesh.git package/feeds/luci/luci-app-easymesh
+        #git clone --depth 1  https://github.com/rufengsuixing/luci-app-adguardhome.git package/feeds/luci/luci-app-adguardhome
+        #echo >> feeds.conf.default
+        #echo 'src-git istore https://github.com/linkease/istore;main' >> feeds.conf.default
+        #echo 'src-git helloworld https://github.com/fw876/helloworld.git' >> feeds.conf.default
+        #./scripts/feeds update istore
+        #./scripts/feeds install -d y -p istore luci-app-store     
+        #./scripts/feeds update -a && ./scripts/feeds install -a
+        #chmod +x $GITHUB_WORKSPACE/$DIY_SH && $GITHUB_WORKSPACE/$DIY_SH
 
     - name: 导入补丁和配置
       run: |
         [ -e files ] && mv files openwrt/files
         cat configs/menuconfig.config >> openwrt/.config
 
-    - name: 设置是否使用 nx30pro eeprom
-      if: env.USE_NX30PRO_EEPROM == 'true'
-      run: |
-        mkdir -p openwrt/target/linux/mediatek/filogic/base-files/lib/firmware/mediatek
-        cp eeprom/nx30pro_eeprom.bin openwrt/target/linux/mediatek/filogic/base-files/lib/firmware/mediatek
-        sed -i -e '/caldata_extract_mmc "factory" 0x0 0x1000/ a\           
-        cp /lib/firmware/mediatek/nx30pro_eeprom.bin /lib/firmware/mediatek/mt7981_eeprom_mt7976_dbdc.bin' openwrt/target/linux/mediatek/filogic/base-files/etc/hotplug.d/firmware/11-mt76-caldata
+    #- name: 设置是否使用 nx30pro eeprom
+    #  if: env.USE_NX30PRO_EEPROM == 'true'
+    #  run: |
+    #    mkdir -p openwrt/target/linux/mediatek/filogic/base-files/lib/firmware/mediatek
+    #    cp eeprom/nx30pro_eeprom.bin openwrt/target/linux/mediatek/filogic/base-files/lib/firmware/mediatek
+    #    sed -i -e '/caldata_extract_mmc "factory" 0x0 0x1000/ a\           
+    #    cp /lib/firmware/mediatek/nx30pro_eeprom.bin /lib/firmware/mediatek/mt7981_eeprom_mt7976_dbdc.bin' openwrt/target/linux/mediatek/filogic/base-files/etc/hotplug.d/firmware/11-mt76-caldata
 
-    - name: 设置 dts 闪存频率
-      if: env.USE_52MHZ == 'true'
-      run: |
-        sed -i -e '/bus-width = <8>;/ a\	cap-mmc-highspeed;' openwrt/target/linux/mediatek/dts/mt7981b-cmcc-rax3000m-emmc-ubootmod.dts
-        sed -i 's/26000000/52000000/g' openwrt/target/linux/mediatek/dts/mt7981b-cmcc-rax3000m-emmc-ubootmod.dts
-        grep max-frequency openwrt/target/linux/mediatek/dts/mt7981b-cmcc-rax3000m-emmc-ubootmod.dts
+    #- name: 设置 dts 闪存频率
+    #  if: env.USE_52MHZ == 'true'
+    #  run: |
+    #    sed -i -e '/bus-width = <8>;/ a\	cap-mmc-highspeed;' openwrt/target/linux/mediatek/dts/mt7981b-cmcc-rax3000m-emmc-ubootmod.dts
+    #    sed -i 's/26000000/52000000/g' openwrt/target/linux/mediatek/dts/mt7981b-cmcc-rax3000m-emmc-ubootmod.dts
+    #    grep max-frequency openwrt/target/linux/mediatek/dts/mt7981b-cmcc-rax3000m-emmc-ubootmod.dts
 
     - name: 下载文件
       run: |
         cd openwrt
-        chmod +x $GITHUB_WORKSPACE/$CLASH_CORE && $GITHUB_WORKSPACE/$CLASH_CORE
+        #chmod +x $GITHUB_WORKSPACE/$CLASH_CORE && $GITHUB_WORKSPACE/$CLASH_CORE
         ./scripts/diffconfig.sh > diffconfig
         #cp diffconfig .config
         #make defconfig
@@ -167,9 +167,9 @@ jobs:
      #   make -j$(($(nproc)+1)) || make -j$(nproc) || make -j1 V=s
      #   echo "status=success" >> $GITHUB_OUTPUT
 
-    - name: 空间使用情况
-      if: (!cancelled())
-      run: df -hT
+    #- name: 空间使用情况
+    #  if: (!cancelled())
+    #  run: df -hT
 
     - name: 上传 bin 目录
       uses: actions/upload-artifact@main
