@@ -149,11 +149,14 @@ jobs:
       run: |
         cd openwrt
         chmod +x $GITHUB_WORKSPACE/$CLASH_CORE && $GITHUB_WORKSPACE/$CLASH_CORE
-        make defconfig
+        ./scripts/diffconfig.sh > diffconfig
+        #cp diffconfig .config
+        #make defconfig
         
-        make download -j8 V=10
-        find dl -size -1024c -exec ls -l {} \;
-        find dl -size -1024c -exec rm -f {} \;
+        
+      #  make download -j8 V=10
+      #  find dl -size -1024c -exec ls -l {} \;
+      #  find dl -size -1024c -exec rm -f {} \;
 
     - name: 编译固件中
       id: compile
@@ -223,7 +226,7 @@ jobs:
       with:
         tag_name: ${{ steps.tag.outputs.release_tag }}
         body_path: release.txt
-        files: ${{ env.FIRMWARE }}/.config
+        files: ${{ env.FIRMWARE }}/diffconfig
 
     - name: 删除旧发布的固件
       uses: dev-drprasad/delete-older-releases@v0.2.1
