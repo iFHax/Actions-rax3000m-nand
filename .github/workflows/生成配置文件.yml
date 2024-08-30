@@ -126,10 +126,10 @@ jobs:
         
         #chmod +x $GITHUB_WORKSPACE/$DIY_SH && $GITHUB_WORKSPACE/$DIY_SH
 
-    #- name: 导入补丁和配置
-    #  run: |
-    #    [ -e files ] && mv files openwrt/files
-    #    cat configs/menuconfig.config >> openwrt/.config
+    - name: 导入补丁和配置
+      run: |
+        [ -e files ] && mv files openwrt/files
+        cat configs/menuconfig.config >> openwrt/.config
 
     #- name: 设置是否使用 nx30pro eeprom
     #  if: env.USE_NX30PRO_EEPROM == 'true'
@@ -203,7 +203,7 @@ jobs:
       id: tag
       if: env.UPLOAD_RELEASE == 'true' && steps.compile.outputs.status == 'success' && !cancelled()
       run: |
-        echo -e "友情提供" >> release.txt
+        echo -e "配置中至少要选择一个型号" >> release.txt
         echo -e "全量配置选项" >> release.txt
         #eeprom_status=""
         #if [ -e openwrt/target/linux/mediatek/filogic/base-files/lib/firmware/mediatek/nx30pro_eeprom.bin ] ; then
