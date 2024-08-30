@@ -81,12 +81,12 @@ jobs:
         sudo mkdir -p /workdir
         sudo chown $USER:$GROUPS /workdir
         #磁盘清理命令，来自：https://github.com/coolsnowwolf/lede/issues/11665
-        sudo rm -rf /usr/share/dotnet /etc/apt/sources.list.d /usr/local/lib/android $AGENT_TOOLSDIRECTORY
-        sudo -E apt-get -y purge azure-cli ghc* zulu* llvm* firefox google* dotnet* powershell openjdk* mongodb* moby* || true
-        sudo -E apt-get -y install $(curl -fsSL is.gd/depends_ubuntu_2204)
-        sudo -E systemctl daemon-reload
-        sudo -E apt-get -y autoremove --purge
-        sudo -E apt-get -y clean
+        #sudo rm -rf /usr/share/dotnet /etc/apt/sources.list.d /usr/local/lib/android $AGENT_TOOLSDIRECTORY
+        #sudo -E apt-get -y purge azure-cli ghc* zulu* llvm* firefox google* dotnet* powershell openjdk* mongodb* moby* || true
+        #sudo -E apt-get -y install $(curl -fsSL is.gd/depends_ubuntu_2204)
+        #sudo -E systemctl daemon-reload
+        #sudo -E apt-get -y autoremove --purge
+        #sudo -E apt-get -y clean
         #下载依赖
         #sudo apt install build-essential clang flex bison g++ gawk \
         #gcc-multilib g++-multilib gettext git libncurses-dev libssl-dev \
@@ -112,9 +112,9 @@ jobs:
 
 
     
-    #- name: 更新 & 安装 feeds & 执行脚本
-    #  run: |
-    #    cd /workdir/openwrt
+    - name: 更新 & 安装 feeds & 执行脚本
+      run: |
+        cd /workdir/openwrt
         #git clone  https://github.com/shuishihan/luci-app-easymesh.git package/feeds/luci/luci-app-easymesh
         #git clone --depth 1  https://github.com/rufengsuixing/luci-app-adguardhome.git package/feeds/luci/luci-app-adguardhome
         #echo >> feeds.conf.default
@@ -122,7 +122,7 @@ jobs:
         #echo 'src-git helloworld https://github.com/fw876/helloworld.git' >> feeds.conf.default
         #./scripts/feeds update istore
         #./scripts/feeds install -d y -p istore luci-app-store     
-        #./scripts/feeds update -a && ./scripts/feeds install -a
+        ./scripts/feeds update -a && ./scripts/feeds install -a
         #chmod +x $GITHUB_WORKSPACE/$DIY_SH && $GITHUB_WORKSPACE/$DIY_SH
 
     - name: 导入补丁和配置
