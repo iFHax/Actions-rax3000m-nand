@@ -179,7 +179,7 @@ jobs:
       id: organize
       if: steps.compile.outputs.status == 'success'
       run: |
-        cd openwrt/trunk/.config
+        cd openwrt/.config
         rm -rf *.buildinfo 
         rm -rf *.json 
         rm -rf *.manifest 
