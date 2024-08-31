@@ -11,4 +11,4 @@
 #echo 'src-git luci-app-docker https://github.com/brokeld/luci-app-docker.git' >> feeds.conf.default
 
 ##添加自己的插件库
-echo -e "\nsrc-git extraipk https://github.com/liedieyou/OpenWrt-Packages" >> feeds.conf.default
+echo -e "\nsrc-git extraipk https://github.com/liedieyou/OpenWrt-Packages.git" >> feeds.conf.default
