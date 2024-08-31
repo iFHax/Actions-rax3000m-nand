@@ -143,9 +143,12 @@ jobs:
 
     - name: 导入补丁和配置
       run: |
+        cd openwrt
         [ -e files ] && mv files openwrt/files
         cat configs/rax3000m-nand23.05.config >> openwrt/.config
-        cd openwrt && make defconfig
+        ./scripts/diffconfig.sh > diff.config
+        cp diff.config .config
+        make defconfig
 
     - name: 设置是否使用 nx30pro eeprom
       if: env.USE_NX30PRO_EEPROM == 'true'
@@ -167,6 +170,7 @@ jobs:
         cd openwrt
         #chmod +x $GITHUB_WORKSPACE/$CLASH_CORE && $GITHUB_WORKSPACE/$CLASH_CORE
         #make defconfig
+        
                 
         make download -j8 V=10
         find dl -size -1024c -exec ls -l {} \;
