@@ -122,11 +122,12 @@ jobs:
     - name: 更新 & 安装 feeds & 执行脚本
       run: |
         cd /workdir/openwrt
+        ./scripts/feeds update -a && ./scripts/feeds install -a
         echo >> feeds.conf.default
-        chmod +x $GITHUB_WORKSPACE/$DIY_SH && $GITHUB_WORKSPACE/$DIY_SH
-        echo -e "\nsrc-git extraipk https://github.com/liedieyou/OpenWrt-Packages.git" >> feeds.conf.default
-        #chmod +x $GITHUB_WORKSPACE/$DIY_SH1 && $GITHUB_WORKSPACE/$DIY_SH1
+        chmod +x $GITHUB_WORKSPACE/$DIY_SH && $GITHUB_WORKSPACE/$DIY_SH        
+        chmod +x $GITHUB_WORKSPACE/$DIY_SH1 && $GITHUB_WORKSPACE/$DIY_SH1
         chmod +x $GITHUB_WORKSPACE/$DIY_SH3 && $GITHUB_WORKSPACE/$DIY_SH3
+        
 
         
         #git clone  https://github.com/shuishihan/luci-app-easymesh.git package/feeds/luci/luci-app-easymesh
@@ -163,9 +164,9 @@ jobs:
       run: |
         cd openwrt
         #chmod +x $GITHUB_WORKSPACE/$CLASH_CORE && $GITHUB_WORKSPACE/$CLASH_CORE
-        #make download -j8 V=10
-        
-        make defconfig        
+        #make defconfig
+                
+        make download -j8 V=10
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
 
