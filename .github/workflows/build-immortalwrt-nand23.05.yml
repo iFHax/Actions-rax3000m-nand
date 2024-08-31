@@ -145,7 +145,7 @@ jobs:
       run: |
         cd openwrt
         [ -e files ] && mv files openwrt/files
-        cat configs/rax3000m-nand23.05.config >> openwrt/.config
+        cat configs/rax3000m-nand23.05.config >> .config
         ./scripts/diffconfig.sh > diff.config
         cp diff.config .config
         make defconfig
