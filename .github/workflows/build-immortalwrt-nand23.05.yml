@@ -147,9 +147,10 @@ jobs:
         [ -e files ] && mv files openwrt/files
         cat configs/rax3000m-nand23.05.config >> .config
         cd openwrt 
+        
+        ./scripts/diffconfig.sh > diff.config
+        cp diff.config .config
         make defconfig
-        #./scripts/diffconfig.sh > diff.config
-        #cp diff.config .config
         
 
     - name: 设置是否使用 nx30pro eeprom
