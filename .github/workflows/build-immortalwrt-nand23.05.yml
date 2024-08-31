@@ -148,8 +148,8 @@ jobs:
         cat configs/rax3000m-nand23.05.config >> .config
         cd openwrt 
         
-        ./scripts/diffconfig.sh > diff.config
-        cp diff.config .config
+        #./scripts/diffconfig.sh > diff.config
+        #cp diff.config .config
         make defconfig
         
 
