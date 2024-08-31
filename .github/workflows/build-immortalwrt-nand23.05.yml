@@ -84,8 +84,9 @@ jobs:
         #磁盘清理命令，来自：https://github.com/coolsnowwolf/lede/issues/11665
         sudo rm -rf /usr/share/dotnet /etc/apt/sources.list.d /usr/local/lib/android /opt/ghc /etc/mysql /etc/php
         sudo -E apt-get -y purge azure-cli ghc* zulu* llvm* firefox google* dotnet* powershell openjdk* mongodb* moby* || true
-        sudo -E apt-get -qq update -y      
-        sudo bash -c 'bash <(curl -s https://build-scripts.immortalwrt.org/init_build_environment.sh)'
+        sudo -E apt-get -qq update -y
+        sudo -E apt-get -y install $(curl -fsSL is.gd/depends_ubuntu_2204)
+        #sudo bash -c 'bash <(curl -s https://build-scripts.immortalwrt.org/init_build_environment.sh)'
         sudo -E apt-get -y autoremove --purge
         sudo -E apt-get -y clean
         
