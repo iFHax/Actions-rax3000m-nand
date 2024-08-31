@@ -143,12 +143,14 @@ jobs:
 
     - name: 导入补丁和配置
       run: |
-        cd openwrt
+        
         [ -e files ] && mv files openwrt/files
         cat configs/rax3000m-nand23.05.config >> .config
-        ./scripts/diffconfig.sh > diff.config
-        cp diff.config .config
+        cd openwrt 
         make defconfig
+        #./scripts/diffconfig.sh > diff.config
+        #cp diff.config .config
+        
 
     - name: 设置是否使用 nx30pro eeprom
       if: env.USE_NX30PRO_EEPROM == 'true'
