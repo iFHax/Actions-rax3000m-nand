@@ -32,9 +32,10 @@ env:
   REPO_URL: https://github.com/immortalwrt/immortalwrt
   REPO_BRANCH: openwrt-23.05
   #FREE_DISK_SH: scripts/free_disk_space.sh
-  ENV_SH: scripts/environment.sh
+  #ENV_SH: scripts/environment.sh
   DIY_SH: scripts/diy.sh
   DIY_SH1: scripts/diy1.sh
+  DIY_SH3: scripts/diy3.sh
   #CLASH_CORE: scripts/preset-clash-core.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: false
@@ -122,7 +123,7 @@ jobs:
       run: |
         cd /workdir/openwrt
         echo >> feeds.conf.default
-        chmod +x $GITHUB_WORKSPACE/$DIY_SH && $GITHUB_WORKSPACE/$DIY_SH1
+        chmod +x $GITHUB_WORKSPACE/$DIY_SH && $GITHUB_WORKSPACE/$DIY_SH1 && $GITHUB_WORKSPACE/$DIY_SH3
 
         
         #git clone  https://github.com/shuishihan/luci-app-easymesh.git package/feeds/luci/luci-app-easymesh
@@ -158,7 +159,7 @@ jobs:
     - name: 下载文件
       run: |
         cd openwrt
-        chmod +x $GITHUB_WORKSPACE/$CLASH_CORE && $GITHUB_WORKSPACE/$CLASH_CORE
+        #chmod +x $GITHUB_WORKSPACE/$CLASH_CORE && $GITHUB_WORKSPACE/$CLASH_CORE
         make defconfig
         make download -j8 V=10
         find dl -size -1024c -exec ls -l {} \;
