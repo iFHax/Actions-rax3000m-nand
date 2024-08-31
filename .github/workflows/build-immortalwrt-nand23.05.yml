@@ -124,11 +124,15 @@ jobs:
         cd /workdir/openwrt
         ./scripts/feeds update -a && ./scripts/feeds install -a
         echo >> feeds.conf.default
-        chmod +x $GITHUB_WORKSPACE/$DIY_SH && $GITHUB_WORKSPACE/$DIY_SH        
         chmod +x $GITHUB_WORKSPACE/$DIY_SH1 && $GITHUB_WORKSPACE/$DIY_SH1
-        chmod +x $GITHUB_WORKSPACE/$DIY_SH3 && $GITHUB_WORKSPACE/$DIY_SH3
-        
 
+        cp -f $GITHUB_WORKSPACE/$DIY_SH3 openwrt/diy3.sh        
+        chmod +x openwrt/diy3.sh && openwrt/diy3.sh
+
+        cp -f $GITHUB_WORKSPACE/$DIY_SH openwrt/diy.sh        
+        chmod +x openwrt/diy.sh && openwrt/diy.sh      
+        
+        
         
         #git clone  https://github.com/shuishihan/luci-app-easymesh.git package/feeds/luci/luci-app-easymesh
         #git clone --depth 1  https://github.com/rufengsuixing/luci-app-adguardhome.git package/feeds/luci/luci-app-adguardhome
