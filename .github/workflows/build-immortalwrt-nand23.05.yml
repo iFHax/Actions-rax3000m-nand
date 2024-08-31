@@ -51,6 +51,7 @@ jobs:
     - name: 检查
       uses: actions/checkout@main
 
+
     #代码来自https://github.com/haiibo/OpenWrt/blob/main/.github/workflows/ARMv8-Mini-OpenWrt.yml
     - name: 检查云服务器型号
       run: |
@@ -114,7 +115,7 @@ jobs:
       uses: stupidloud/cachewrtbuild@main
       with:
         ccache: 'true'
-        mixkey: 'openwrt23-cortexa53'
+        #mixkey: 'openwrt23-cortexa53'
         prefix: ${{ github.workspace }}/openwrt
 
 
@@ -184,8 +185,8 @@ jobs:
       run: |
         cd openwrt
         echo -e "$(($(nproc)+1)) thread compile"
-        make -j1 V=s
-        #make -j$(($(nproc)+1)) || make -j$(nproc) || make -j1 V=s
+        #make -j1 V=s
+        make -j$(($(nproc)+1)) || make -j$(nproc) || make -j1 V=s
         echo "status=success" >> $GITHUB_OUTPUT
 
     - name: 空间使用情况
