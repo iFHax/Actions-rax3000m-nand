@@ -124,7 +124,8 @@ jobs:
         cd /workdir/openwrt
         echo >> feeds.conf.default
         chmod +x $GITHUB_WORKSPACE/$DIY_SH && $GITHUB_WORKSPACE/$DIY_SH
-        chmod +x $GITHUB_WORKSPACE/$DIY_SH1 && $GITHUB_WORKSPACE/$DIY_SH1
+        echo -e "\nsrc-git extraipk https://github.com/liedieyou/OpenWrt-Packages.git" >> feeds.conf.default
+        #chmod +x $GITHUB_WORKSPACE/$DIY_SH1 && $GITHUB_WORKSPACE/$DIY_SH1
         chmod +x $GITHUB_WORKSPACE/$DIY_SH3 && $GITHUB_WORKSPACE/$DIY_SH3
 
         
