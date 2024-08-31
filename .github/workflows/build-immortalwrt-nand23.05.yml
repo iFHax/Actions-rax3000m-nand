@@ -123,7 +123,9 @@ jobs:
       run: |
         cd /workdir/openwrt
         echo >> feeds.conf.default
-        chmod +x $GITHUB_WORKSPACE/$DIY_SH && $GITHUB_WORKSPACE/$DIY_SH1 && $GITHUB_WORKSPACE/$DIY_SH3
+        chmod +x $GITHUB_WORKSPACE/$DIY_SH && $GITHUB_WORKSPACE/$DIY_SH
+        chmod +x $GITHUB_WORKSPACE/$DIY_SH1 && $GITHUB_WORKSPACE/$DIY_SH1
+        chmod +x $GITHUB_WORKSPACE/$DIY_SH3 && $GITHUB_WORKSPACE/$DIY_SH3
 
         
         #git clone  https://github.com/shuishihan/luci-app-easymesh.git package/feeds/luci/luci-app-easymesh
