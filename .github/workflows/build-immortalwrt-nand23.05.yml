@@ -126,10 +126,10 @@ jobs:
         echo >> feeds.conf.default
         chmod +x $GITHUB_WORKSPACE/$DIY_SH1 && $GITHUB_WORKSPACE/$DIY_SH1
 
-        cp -f $GITHUB_WORKSPACE/$DIY_SH3 openwrt/diy3.sh        
+        cp -f $GITHUB_WORKSPACE/$DIY_SH3 openwrt/        
         chmod +x openwrt/diy3.sh && openwrt/diy3.sh
 
-        cp -f $GITHUB_WORKSPACE/$DIY_SH openwrt/diy.sh        
+        cp -f $GITHUB_WORKSPACE/$DIY_SH openwrt/        
         chmod +x openwrt/diy.sh && openwrt/diy.sh      
         
         
