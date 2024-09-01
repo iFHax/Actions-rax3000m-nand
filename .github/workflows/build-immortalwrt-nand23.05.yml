@@ -123,12 +123,15 @@ jobs:
     - name: 更新 & 安装 feeds & 执行脚本
       run: |
         cd /workdir/openwrt
-        ./scripts/feeds update -a && ./scripts/feeds install -a
+
         echo >> feeds.conf.default
-        chmod +x $GITHUB_WORKSPACE/$DIY_SH1 && $GITHUB_WORKSPACE/$DIY_SH1
         chmod +x $GITHUB_WORKSPACE/$DIY_SH && $GITHUB_WORKSPACE/$DIY_SH
-        chmod +x $GITHUB_WORKSPACE/$DIY_SH3 && $GITHUB_WORKSPACE/$DIY_SH3
-    
+
+        #顺序很重用，要先修改feeds源配置文件，再更新feeds
+        ./scripts/feeds update -a && ./scripts/feeds install -a
+
+        chmod +x $GITHUB_WORKSPACE/$DIY_SH1 && $GITHUB_WORKSPACE/$DIY_SH1
+        chmod +x $GITHUB_WORKSPACE/$DIY_SH3 && $GITHUB_WORKSPACE/$DIY_SH3    
         
         
         
