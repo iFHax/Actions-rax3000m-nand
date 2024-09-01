@@ -125,9 +125,9 @@ jobs:
         cd /workdir/openwrt
         ./scripts/feeds update -a && ./scripts/feeds install -a
         echo >> feeds.conf.default
-        #chmod +x $GITHUB_WORKSPACE/$DIY_SH1 && $GITHUB_WORKSPACE/$DIY_SH1
-        #chmod +x $GITHUB_WORKSPACE/$DIY_SH && $GITHUB_WORKSPACE/$DIY_SH
-        #chmod +x $GITHUB_WORKSPACE/$DIY_SH3 && $GITHUB_WORKSPACE/$DIY_SH3
+        chmod +x $GITHUB_WORKSPACE/$DIY_SH1 && $GITHUB_WORKSPACE/$DIY_SH1
+        chmod +x $GITHUB_WORKSPACE/$DIY_SH && $GITHUB_WORKSPACE/$DIY_SH
+        chmod +x $GITHUB_WORKSPACE/$DIY_SH3 && $GITHUB_WORKSPACE/$DIY_SH3
     
         
         
