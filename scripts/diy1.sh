@@ -12,3 +12,5 @@
 
 ##添加自己的插件库
 echo -e "\nsrc-git extraipk https://github.com/liedieyou/OpenWrt-Packages.git" >> feeds.conf.default
+##添加istore的插件库
+echo 'src-git nas_luci https://github.com/linkease/nas-packages-luci.git;main' >> feeds.conf.default
