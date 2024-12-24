@@ -50,7 +50,18 @@ jobs:
     steps:
     - name: 检查
       uses: actions/checkout@main
-
+    
+    #代码来自https://github.com/oktty/ActionsBuildOpenWRT/blob/main/.github/workflows/build-x86_64.yml
+    - name: Freeing up disk space
+      uses: easimon/maximize-build-space@master
+      with: 
+        root-reserve-mb: 2048
+        swap-size-mb: 1
+        remove-dotnet: 'true'
+        remove-android: 'true'
+        remove-haskell: 'true'
+        remove-codeql: 'true'
+        remove-docker-images: 'true'
 
     #代码来自https://github.com/haiibo/OpenWrt/blob/main/.github/workflows/ARMv8-Mini-OpenWrt.yml
     - name: 检查云服务器型号
