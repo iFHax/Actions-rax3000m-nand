@@ -48,8 +48,6 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
-    - name: 检查
-      uses: actions/checkout@main
     
     #代码来自https://github.com/oktty/ActionsBuildOpenWRT/blob/main/.github/workflows/build-x86_64.yml
     - name: Freeing up disk space
@@ -62,6 +60,10 @@ jobs:
         remove-haskell: 'true'
         remove-codeql: 'true'
         remove-docker-images: 'true'
+      
+   
+    - name: 检查
+      uses: actions/checkout@main
 
     #代码来自https://github.com/haiibo/OpenWrt/blob/main/.github/workflows/ARMv8-Mini-OpenWrt.yml
     - name: 检查云服务器型号
@@ -95,13 +97,13 @@ jobs:
         #sudo chown $USER:$GROUPS /workdir
         
         #磁盘清理命令，来自：https://github.com/coolsnowwolf/lede/issues/11665
-        sudo rm -rf /usr/share/dotnet /etc/apt/sources.list.d /usr/local/lib/android /opt/ghc /etc/mysql /etc/php
-        sudo -E apt-get -y purge azure-cli ghc* zulu* llvm* firefox google* dotnet* powershell openjdk* mongodb* moby* || true
-        sudo -E apt-get -qq update -y
+        ##sudo rm -rf /usr/share/dotnet /etc/apt/sources.list.d /usr/local/lib/android /opt/ghc /etc/mysql /etc/php
+        ##sudo -E apt-get -y purge azure-cli ghc* zulu* llvm* firefox google* dotnet* powershell openjdk* mongodb* moby* || true
+        ##sudo -E apt-get -qq update -y
         #sudo -E apt-get -y install $(curl -fsSL is.gd/depends_ubuntu_2204)
-        sudo bash -c 'bash <(curl -s https://build-scripts.immortalwrt.org/init_build_environment.sh)'
-        sudo -E apt-get -y autoremove --purge
-        sudo -E apt-get -y clean
+        ##sudo bash -c 'bash <(curl -s https://build-scripts.immortalwrt.org/init_build_environment.sh)'
+        ##sudo -E apt-get -y autoremove --purge
+        ##sudo -E apt-get -y clean
         
         echo "USE_NX30PRO_EEPROM=${{ github.event.inputs.USE_NX30PRO_EEPROM }}" >> $GITHUB_ENV
         echo "USE_52MHZ=${{ github.event.inputs.USE_52MHZ }}" >> $GITHUB_ENV
@@ -119,7 +121,7 @@ jobs:
       working-directory: /workdir
       run: |
         git clone $REPO_URL -b $REPO_BRANCH openwrt
-        #ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
+        ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
 
     #改名了
     - name: 开启缓存
@@ -134,7 +136,7 @@ jobs:
     - name: 更新 & 安装 feeds & 执行脚本
       run: |
         cd /workdir/openwrt
-        #cd /openwrt
+        #cd openwrt
         echo >> feeds.conf.default
         chmod +x $GITHUB_WORKSPACE/$DIY_SH1 && $GITHUB_WORKSPACE/$DIY_SH1
         
