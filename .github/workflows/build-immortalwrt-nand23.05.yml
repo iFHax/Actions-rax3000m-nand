@@ -119,7 +119,7 @@ jobs:
       working-directory: /workdir
       run: |
         git clone $REPO_URL -b $REPO_BRANCH openwrt
-        ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
+        #ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
 
     #改名了
     - name: 开启缓存
@@ -133,8 +133,8 @@ jobs:
     
     - name: 更新 & 安装 feeds & 执行脚本
       run: |
-        #cd /workdir/openwrt
-        cd /openwrt
+        cd /workdir/openwrt
+        #cd /openwrt
         echo >> feeds.conf.default
         chmod +x $GITHUB_WORKSPACE/$DIY_SH1 && $GITHUB_WORKSPACE/$DIY_SH1
         
