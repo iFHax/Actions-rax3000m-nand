@@ -121,7 +121,7 @@ jobs:
       working-directory: /workdir
       run: |
         git clone $REPO_URL -b $REPO_BRANCH openwrt
-        ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
+        ##ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
 
     #改名了
     - name: 开启缓存
