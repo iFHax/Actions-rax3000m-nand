@@ -12,6 +12,8 @@
 
 ##添加自己的插件库
 echo -e "\nsrc-git extraipk https://github.com/liedieyou/OpenWrt-Packages.git" >> feeds.conf.default
+#删除自带的geoview
+rm -rf feeds/packages/net/geoview
 ##添加istore的插件库
 echo 'src-git nas_luci https://github.com/linkease/nas-packages-luci.git;main' >> feeds.conf.default
 echo 'src-git nas https://github.com/linkease/nas-packages.git;master' >> feeds.conf.default
