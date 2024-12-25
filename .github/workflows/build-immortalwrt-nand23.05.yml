@@ -108,8 +108,8 @@ jobs:
         echo "USE_NX30PRO_EEPROM=${{ github.event.inputs.USE_NX30PRO_EEPROM }}" >> $GITHUB_ENV
         echo "USE_52MHZ=${{ github.event.inputs.USE_52MHZ }}" >> $GITHUB_ENV
         sudo timedatectl set-timezone "$TZ"
-        sudo mkdir -p /workdir
-        sudo chown $USER:$GROUPS /workdir
+        ##sudo mkdir -p /workdir
+        ##sudo chown $USER:$GROUPS /workdir
 
 
 
@@ -118,7 +118,7 @@ jobs:
       run: df -hT
 
     - name: 克隆源码
-      working-directory: /workdir
+      working-directory: ./
       run: |
         git clone $REPO_URL -b $REPO_BRANCH openwrt
         ##ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
@@ -135,8 +135,8 @@ jobs:
     
     - name: 更新 & 安装 feeds & 执行脚本
       run: |
-        cd /workdir/openwrt
-        #cd openwrt
+        ##cd /workdir/openwrt
+        cd openwrt
         echo >> feeds.conf.default
         chmod +x $GITHUB_WORKSPACE/$DIY_SH1 && $GITHUB_WORKSPACE/$DIY_SH1
         
