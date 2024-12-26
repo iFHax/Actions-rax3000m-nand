@@ -138,13 +138,13 @@ jobs:
         ##cd /workdir/openwrt
         cd openwrt
         echo >> feeds.conf.default
-        ./scripts/feeds update -a
+        #./scripts/feeds update -a
 
         
         #删除自带的passwall依赖,https://github.com/xiaorouji/openwrt-passwall2/issues/722
-        rm -rf feeds/packages/net/{chinadns*,hysteria,geoview,trojan*,xray*,v2ray*,sing*}
+        #rm -rf feeds/packages/net/{chinadns*,hysteria,geoview,trojan*,xray*,v2ray*,sing*}
         chmod +x $GITHUB_WORKSPACE/$DIY_SH1 && $GITHUB_WORKSPACE/$DIY_SH1
-        ./scripts/feeds update extraipk && ./scripts/feeds install -a
+        ./scripts/feeds update -a && ./scripts/feeds install -a
         
         
 
