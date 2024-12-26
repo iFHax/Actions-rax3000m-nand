@@ -144,8 +144,8 @@ jobs:
         #删除自带的passwall依赖,https://github.com/xiaorouji/openwrt-passwall2/issues/722
         rm -rf feeds/packages/net/{chinadns*,hysteria,geoview,trojan*,xray*,v2ray*,sing*}
         chmod +x $GITHUB_WORKSPACE/$DIY_SH1 && $GITHUB_WORKSPACE/$DIY_SH1
-        ./scripts/feeds update -a -f feeds.conf.extraipk && ./scripts/feeds install -a
-        ./scripts/feeds update extraipk && ./scripts/feeds install -a
+        chmod +x feeds.conf.extraipk && ./scripts/feeds update -a -f feeds.conf.extraipk && ./scripts/feeds install -a
+        
         
 
         #顺序很重用，要先修改feeds源配置文件，再更新feeds
