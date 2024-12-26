@@ -144,6 +144,10 @@ jobs:
         #顺序很重用，要先修改feeds源配置文件，再更新feeds
         ./scripts/feeds update -a && ./scripts/feeds install -a
 
+        #删除自带的passwall依赖,https://github.com/xiaorouji/openwrt-passwall2/issues/722
+        rm -rf feeds/packages/net/{chinadns*,hysteria,geoview,trojan*,xray*,v2ray*,sing*}
+        
+
         chmod +x $GITHUB_WORKSPACE/$DIY_SH && $GITHUB_WORKSPACE/$DIY_SH
         chmod +x $GITHUB_WORKSPACE/$DIY_SH3 && $GITHUB_WORKSPACE/$DIY_SH3    
         
@@ -196,8 +200,7 @@ jobs:
         make download -j8 V=10
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
-        #删除自带的geoview
-        rm -rf feeds/packages/net/geoview 
+ 
 
     - name: 编译固件中
       id: compile
