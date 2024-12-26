@@ -192,18 +192,20 @@ jobs:
         #chmod +x $GITHUB_WORKSPACE/$CLASH_CORE && $GITHUB_WORKSPACE/$CLASH_CORE
         #make defconfig
         
-                
+       
         make download -j8 V=10
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
+        #删除自带的geoview
+        rm -rf feeds/packages/net/geoview 
 
     - name: 编译固件中
       id: compile
       run: |
         cd openwrt
         echo -e "$(($(nproc)+1)) thread compile"
-        make -j1 V=s
-        #make -j$(($(nproc)+1)) || make -j$(nproc) || make -j1 V=s
+        #make -j1 V=s
+        make -j$(($(nproc)+1)) || make -j$(nproc) || make -j1 V=s
         echo "status=success" >> $GITHUB_OUTPUT
 
     - name: 空间使用情况
