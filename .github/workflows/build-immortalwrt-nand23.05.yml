@@ -153,7 +153,7 @@ jobs:
         
 
         ##删除自带的passwall依赖,https://github.com/xiaorouji/openwrt-passwall2/issues/722
-        #rm -rf feeds/packages/net/{chinadns*,hysteria,geoview,trojan*,xray*,v2ray*,sing*}
+        rm -rf feeds/packages/net/geoview
         
 
         chmod +x $GITHUB_WORKSPACE/$DIY_SH && $GITHUB_WORKSPACE/$DIY_SH
