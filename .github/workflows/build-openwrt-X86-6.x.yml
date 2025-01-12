@@ -146,6 +146,9 @@ jobs:
         #顺序很重用，要先修改feeds源配置文件，再更新feeds
         ./scripts/feeds update -a && ./scripts/feeds install -a
 
+        ##删除自带的passwall依赖,https://github.com/xiaorouji/openwrt-passwall2/issues/722
+        rm -rf feeds/packages/net/geoview
+
         chmod +x $GITHUB_WORKSPACE/$DIY_SH && $GITHUB_WORKSPACE/$DIY_SH
         chmod +x $GITHUB_WORKSPACE/$DIY_SH3 && $GITHUB_WORKSPACE/$DIY_SH3    
         
