@@ -29,7 +29,7 @@ on:
         type: boolean
 
 env:
-  REPO_URL: https://github.com/openwrt/openwrt
+  REPO_URL: https://github.com/immortalwrt/immortalwrt
   REPO_BRANCH: openwrt-24.10
   #FREE_DISK_SH: scripts/free_disk_space.sh
   #ENV_SH: scripts/environment.sh
