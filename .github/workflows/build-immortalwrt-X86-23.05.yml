@@ -36,6 +36,7 @@ env:
   DIY_SH: scripts/diy.sh
   DIY_SH1: scripts/diy1.sh
   DIY_SH3: scripts/diy3.sh
+  DIY_SH4: scripts/diy4.sh
   #CLASH_CORE: scripts/preset-clash-core.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: false
@@ -134,8 +135,9 @@ jobs:
         ##删除自带的passwall依赖,https://github.com/xiaorouji/openwrt-passwall2/issues/722
         rm -rf feeds/packages/net/geoview
 
-        chmod +x $GITHUB_WORKSPACE/$DIY_SH && $GITHUB_WORKSPACE/$DIY_SH
-        chmod +x $GITHUB_WORKSPACE/$DIY_SH3 && $GITHUB_WORKSPACE/$DIY_SH3    
+        #chmod +x $GITHUB_WORKSPACE/$DIY_SH && $GITHUB_WORKSPACE/$DIY_SH
+        #chmod +x $GITHUB_WORKSPACE/$DIY_SH3 && $GITHUB_WORKSPACE/$DIY_SH3
+        chmod +x $GITHUB_WORKSPACE/$DIY_SH4 && $GITHUB_WORKSPACE/$DIY_SH4
         
         
         
