@@ -150,7 +150,8 @@ jobs:
         rm -rf feeds/packages/net/geoview
 
         chmod +x $GITHUB_WORKSPACE/$DIY_SH && $GITHUB_WORKSPACE/$DIY_SH
-        chmod +x $GITHUB_WORKSPACE/$DIY_SH3 && $GITHUB_WORKSPACE/$DIY_SH3    
+        chmod +x $GITHUB_WORKSPACE/$DIY_SH3 && $GITHUB_WORKSPACE/$DIY_SH3  
+        chmod +x $GITHUB_WORKSPACE/$DIY_SH4 && $GITHUB_WORKSPACE/$DIY_SH4
         
         
         
