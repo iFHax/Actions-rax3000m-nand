@@ -36,6 +36,7 @@ env:
   DIY_SH: scripts/diy.sh
   DIY_SH1: scripts/diy1.sh
   DIY_SH3: scripts/diy3.sh
+  DIY_SH4: scripts/diy4.sh
   #CLASH_CORE: scripts/preset-clash-core.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: false
