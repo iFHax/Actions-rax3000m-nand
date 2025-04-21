@@ -163,20 +163,20 @@ jobs:
         
         
 
-    - name: 设置是否使用 nx30pro eeprom
-      if: env.USE_NX30PRO_EEPROM == 'true'
-      run: |
-        mkdir -p openwrt/target/linux/mediatek/filogic/base-files/lib/firmware/mediatek
-        cp eeprom/nx30pro_eeprom.bin openwrt/target/linux/mediatek/filogic/base-files/lib/firmware/mediatek
-        sed -i -e '/caldata_extract_mmc "factory" 0x0 0x1000/ a\           
-        cp /lib/firmware/mediatek/nx30pro_eeprom.bin /lib/firmware/mediatek/mt7981_eeprom_mt7976_dbdc.bin' openwrt/target/linux/mediatek/filogic/base-files/etc/hotplug.d/firmware/11-mt76-caldata
+#    - name: 设置是否使用 nx30pro eeprom
+#      if: env.USE_NX30PRO_EEPROM == 'true'
+#      run: |
+#        mkdir -p openwrt/target/linux/mediatek/filogic/base-files/lib/firmware/mediatek
+#        cp eeprom/nx30pro_eeprom.bin openwrt/target/linux/mediatek/filogic/base-files/lib/firmware/mediatek
+#        sed -i -e '/caldata_extract_mmc "factory" 0x0 0x1000/ a\           
+#        cp /lib/firmware/mediatek/nx30pro_eeprom.bin /lib/firmware/mediatek/mt7981_eeprom_mt7976_dbdc.bin' openwrt/target/linux/mediatek/filogic/base-files/etc/hotplug.d/firmware/11-mt76-caldata
 
-    - name: 设置 dts 闪存频率
-      if: env.USE_52MHZ == 'true'
-      run: |
-        sed -i -e '/bus-width = <8>;/ a\	cap-mmc-highspeed;' openwrt/target/linux/mediatek/dts/mt7981b-cmcc-rax3000m-emmc-ubootmod.dts
-        sed -i 's/26000000/52000000/g' openwrt/target/linux/mediatek/dts/mt7981b-cmcc-rax3000m-emmc-ubootmod.dts
-        grep max-frequency openwrt/target/linux/mediatek/dts/mt7981b-cmcc-rax3000m-emmc-ubootmod.dts
+#    - name: 设置 dts 闪存频率
+#      if: env.USE_52MHZ == 'true'
+#      run: |
+#        sed -i -e '/bus-width = <8>;/ a\	cap-mmc-highspeed;' openwrt/target/linux/mediatek/dts/mt7981b-cmcc-rax3000m-emmc-ubootmod.dts
+#        sed -i 's/26000000/52000000/g' openwrt/target/linux/mediatek/dts/mt7981b-cmcc-rax3000m-emmc-ubootmod.dts
+#        grep max-frequency openwrt/target/linux/mediatek/dts/mt7981b-cmcc-rax3000m-emmc-ubootmod.dts
 
     - name: 下载文件
       run: |
